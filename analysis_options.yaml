@@ -15,11 +15,6 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
 
-  errors:
-    strict-casts: error
-    strict-inference: error
-    strict-raw-types: error
-
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
