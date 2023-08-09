@@ -9,7 +9,11 @@ final class GameState extends Equatable {
   final int recoverableEyes;
   final Player? winner;
 
-  const GameState(this.dice, this.turn, this.recoverableEyes, [this.winner]);
+  const GameState(
+      {required this.dice,
+      required this.turn,
+      required this.recoverableEyes,
+      this.winner});
 
   @override
   List<Object?> get props => [dice, turn, recoverableEyes, winner];

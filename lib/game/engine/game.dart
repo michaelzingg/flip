@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'model/game_state.dart';
 import 'model/player.dart';
 
-final dummyState = GameState([], Player.one, 5);
+const dummyState = GameState(dice: [], turn: Player.one, recoverableEyes: 0);
 
 Either<String, GameState> run(GameEvent event, GameState state) =>
     _processEvent(event).run(state).first;
