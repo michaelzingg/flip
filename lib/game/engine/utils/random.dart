@@ -7,17 +7,22 @@ State<int, int> randomInt() {
   });
 }
 
-State<int, int> randomIntInRange(int minInclusive, int maxExclusive) {
+State<int, int> randomIntInRange(
+    {required int startInclusive, required int endExclusive}) {
   final inRange = (int num) =>
-      minInclusive +
-      ((num / 8239451023) * (maxExclusive - minInclusive)).floor();
+      startInclusive +
+      ((num / 8239451023) * (endExclusive - startInclusive)).floor();
   return randomInt().map(inRange);
 }
 
 State<int, List<int>> randomIntListInRange(
-    int numberOfElements, int minInclusive, int maxExclusive) {
-  return sequence(List.generate(numberOfElements,
-      (index) => randomIntInRange(minInclusive, maxExclusive)));
+    {required int numberOfElements,
+    required int startInclusive,
+    required int endExclusive}) {
+  return sequence(List.generate(
+      numberOfElements,
+      (index) => randomIntInRange(
+          startInclusive: startInclusive, endExclusive: endExclusive)));
 }
 
 // TODO: Convert to extension method (see if it supports strict typing to State or Applicative)

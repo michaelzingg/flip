@@ -9,7 +9,8 @@ void main() {
   test('should return random number in given range', () {
     const min = 0;
     const max = 1;
-    expect(randomIntInRange(min, max).evaluate(77),
+    expect(
+        randomIntInRange(startInclusive: min, endExclusive: max).evaluate(77),
         allOf(greaterThanOrEqualTo(min), lessThan(max)));
   });
 
@@ -17,7 +18,10 @@ void main() {
     const min = 0;
     const max = 3;
     const n = 100;
-    expect(randomIntListInRange(n, min, max).evaluate(77),
+    expect(
+        randomIntListInRange(
+                numberOfElements: n, startInclusive: min, endExclusive: max)
+            .evaluate(77),
         everyElement(allOf(greaterThanOrEqualTo(min), lessThan(max))));
   });
 }
