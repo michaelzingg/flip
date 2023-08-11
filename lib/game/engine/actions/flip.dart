@@ -14,30 +14,8 @@ final FlipAction flip = (int dieId, GameState state) {
       .toEither(() => 'Die with id $dieId not found')
       .filterOrElse((r) => r is PlayerDie, (r) => 'Can only flip player dice')
       .filterOrElse((r) => r is UnflippedDie, (r) => 'Die already flipped')
-      .map((a) => flipDie(a as UnflippedDie))
-      .map(replaceDie(state))
+      .map((a) => (a as UnflippedDie).flip())
+      .map(state.replaceDie)
       .map(resetRecoverableEyes)
       .map(changeTurns);
 };
-
-FlippedDie flipDie(UnflippedDie die) {
-  return FlippedDie(die.dieId, die.value, die.player);
-}
-
-final replaceDie = (GameState state) {
-  return (FlippedDie die) => GameState(
-      dice: state.dice.map((e) => e.dieId == die.dieId ? die : e),
-      turn: state.turn,
-      recoverableEyes: state.recoverableEyes);
-};
-
-GameState resetRecoverableEyes(GameState state) {
-  return GameState(dice: state.dice, turn: state.turn, recoverableEyes: 0);
-}
-
-GameState changeTurns(GameState state) {
-  return GameState(
-      dice: state.dice,
-      turn: state.turn == Player.one ? Player.two : Player.one,
-      recoverableEyes: state.recoverableEyes);
-}

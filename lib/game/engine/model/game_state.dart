@@ -17,7 +17,20 @@ final class GameState extends Equatable {
 
   @override
   List<Object?> get props => [dice, turn, recoverableEyes, winner];
+
+  GameState replaceDie(Die die) => GameState(
+      dice: dice.map((e) => e.dieId == die.dieId ? die : e),
+      turn: turn,
+      recoverableEyes: recoverableEyes);
 }
+
+GameState changeTurns(GameState state) => GameState(
+    dice: state.dice,
+    turn: state.turn == Player.one ? Player.two : Player.one,
+    recoverableEyes: state.recoverableEyes);
+
+GameState resetRecoverableEyes(GameState state) =>
+    GameState(dice: state.dice, turn: state.turn, recoverableEyes: 0);
 
 final class GameEvent extends Equatable {
   final Player player;
