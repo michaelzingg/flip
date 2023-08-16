@@ -1,12 +1,19 @@
 import 'package:flutter/widgets.dart';
 
-class DiceWidget extends StatelessWidget {
-  final int value;
+import '../game/engine/model/die.dart';
 
-  const DiceWidget({super.key, required this.value});
+class DiceWidget extends StatelessWidget {
+  final Die die;
+
+  const DiceWidget({super.key, required this.die});
 
   @override
   Widget build(BuildContext context) {
-    return Image(image: AssetImage('assets/images/Dice-$value.png'));
+    return SizedBox(
+      height: 50,
+      child: Image(
+          fit: BoxFit.fill,
+          image: AssetImage('assets/images/Dice-${die.value}.png')),
+    );
   }
 }
