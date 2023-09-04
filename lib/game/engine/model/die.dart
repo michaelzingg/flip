@@ -32,7 +32,7 @@ class FlippedDie extends PlayerDie {
 class UnflippedDie extends PlayerDie {
   const UnflippedDie(super.dieId, super.value, super.player);
 
-  FlippedDie flip() => FlippedDie(dieId, value, player);
+  FlippedDie flip() => FlippedDie(dieId, 7 - value, player);
 }
 
 class PlayedDie extends Die {
