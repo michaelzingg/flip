@@ -18,6 +18,7 @@ final PlayAction play = (int dieId, GameState state) {
       .filterOrElse(isOponentDie, (_) => 'Can only play oponent dice')
       .map((die) => die.play())
       .map(state.replaceDie)
+      .map(_resetFlippedDice)
       .map(_setRecoverableEyes(dieId))
       .map(changeTurns);
 };
@@ -34,3 +35,9 @@ final _setRecoverableEyes = (int dieId) => (GameState state) => GameState(
         .firstOption
         .map((t) => t.value - 1)
         .getOrElse(() => 0));
+
+final _resetFlippedDice = (GameState state) => GameState(
+    dice: state.dice
+        .map((e) => e is FlippedDie && e.player == state.turn ? e.unflip() : e),
+    turn: state.turn,
+    recoverableEyes: state.recoverableEyes);
