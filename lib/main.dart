@@ -42,12 +42,12 @@ class MyApp extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: const Text("Test"),
+            title: const Text("FL!P"),
           ),
           body: Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
-              child: GameWidget(state: create(seed: 77), runMethod: run)),
+              child: GameWidget(state: create(seed: 77))),
         ));
   }
 }
