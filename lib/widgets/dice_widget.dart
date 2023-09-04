@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../game/engine/model/die.dart';
@@ -16,9 +17,12 @@ class DiceWidget extends StatelessWidget {
       height: 50,
       child: GestureDetector(
         onTap: () => onClickHandler(die.dieId),
-        child: Image(
-            fit: BoxFit.fill,
-            image: AssetImage('assets/images/Dice-${die.value}.png')),
+        child: Opacity(
+          opacity: die is FlippedDie ? 0.5 : 1,
+          child: Image(
+              fit: BoxFit.fill,
+              image: AssetImage('assets/images/Dice-${die.value}.png')),
+        ),
       ),
     );
   }
