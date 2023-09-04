@@ -18,6 +18,10 @@ State<GameState, Either<String, GameState>> _processEvent(GameEvent event) =>
       if (event.player != state.turn) {
         return Tuple2(Either.left('${state.turn.name}\'s turn'), state);
       }
+      if (state.winner.toOption().isSome()) {
+        return Tuple2(
+            Either.left('Game ended. No more moves possible!'), state);
+      }
       final newState = state.dice
           .where((t) => t.dieId == event.dieId)
           .firstOption
