@@ -27,8 +27,10 @@ class GameWidget extends HookWidget {
       children: [
         Text('Player ${stateNotifier.value.turn.name} s turn'),
         const Text('Player 1'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          spacing: 8.0,
+          runSpacing: 12.0,
+          alignment: WrapAlignment.center,
           children: stateNotifier.value.dice
               .whereType<PlayerDie>()
               .where((element) => element.player == Player.one)
@@ -41,8 +43,10 @@ class GameWidget extends HookWidget {
         const Text('Played Dice'),
         SizedBox(
           height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Wrap(
+            spacing: 8.0,
+            runSpacing: 12.0,
+            alignment: WrapAlignment.center,
             children: stateNotifier.value.dice
                 .whereType<PlayedDie>()
                 .map((e) => DiceWidget(
@@ -53,8 +57,10 @@ class GameWidget extends HookWidget {
           ),
         ),
         const Text('Player 2'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          spacing: 8.0,
+          runSpacing: 12.0,
+          alignment: WrapAlignment.center,
           children: stateNotifier.value.dice
               .whereType<PlayerDie>()
               .where((element) => element.player == Player.two)
