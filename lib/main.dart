@@ -1,4 +1,5 @@
 import 'package:flip_flutter/game/engine/actions/create.dart';
+import 'package:flip_flutter/game/engine/game.dart';
 import 'package:flip_flutter/widgets/game_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
           body: Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
-              child: GameWidget(state: create(seed: 77))),
+              child: GameWidget(state: create(seed: 77), runMethod: run)),
         ));
   }
 }

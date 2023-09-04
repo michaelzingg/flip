@@ -1,3 +1,4 @@
+import 'package:flip_flutter/game/engine/game.dart';
 import 'package:flip_flutter/game/engine/model/die.dart';
 import 'package:flip_flutter/game/engine/model/game_state.dart';
 import 'package:flip_flutter/game/engine/model/player.dart';
@@ -9,17 +10,22 @@ import 'package:fpdart/fpdart.dart';
 class GameWidget extends HookWidget {
   final GameState state;
 
-  const GameWidget({super.key, required this.state});
+  final Either<String, GameState> Function(GameEvent event, GameState state)
+      runMethod;
 
-  // TODO: Make dice clickable
+  const GameWidget({super.key, required this.state, required this.runMethod});
 
   @override
   Widget build(BuildContext context) {
     final stateNotifier = useState(state);
 
-    return Container(
-        child: Column(
+    final sendGameEvent = (int dieId) =>
+        run(GameEvent(stateNotifier.value.turn, dieId), stateNotifier.value)
+            .fold((l) => print(l), (r) => stateNotifier.value = r);
+
+    return Column(
       children: [
+        Text('Player ${stateNotifier.value.turn.name} s turn'),
         const Text('Player 1'),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,6 +34,7 @@ class GameWidget extends HookWidget {
               .where((element) => element.player == Player.one)
               .map((e) => DiceWidget(
                     die: e,
+                    onClickHandler: sendGameEvent,
                   ))
               .toList(),
         ),
@@ -40,6 +47,7 @@ class GameWidget extends HookWidget {
                 .whereType<PlayedDie>()
                 .map((e) => DiceWidget(
                       die: e,
+                      onClickHandler: sendGameEvent,
                     ))
                 .toList(),
           ),
@@ -52,6 +60,7 @@ class GameWidget extends HookWidget {
               .where((element) => element.player == Player.two)
               .map((e) => DiceWidget(
                     die: e,
+                    onClickHandler: sendGameEvent,
                   ))
               .toList(),
         ),
@@ -60,6 +69,6 @@ class GameWidget extends HookWidget {
             .map((t) => 'Player ${t.name} wins!')
             .getOrElse(() => 'Keep playing...'))
       ],
-    ));
+    );
   }
 }
