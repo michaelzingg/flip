@@ -1,5 +1,5 @@
-import 'package:flip_flutter/game/engine/model/die.dart';
-import 'package:flip_flutter/widgets/dice_widget.dart';
+import 'package:flip/game/engine/model/die.dart';
+import 'package:flip/widgets/dice_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

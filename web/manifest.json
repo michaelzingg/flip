@@ -1,6 +1,6 @@
 {
-    "name": "flip_flutter",
-    "short_name": "flip_flutter",
+    "name": "flip",
+    "short_name": "flip",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

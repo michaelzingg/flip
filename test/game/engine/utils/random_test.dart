@@ -1,4 +1,4 @@
-import 'package:flip_flutter/game/engine/utils/random.dart';
+import 'package:flip/game/engine/utils/random.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

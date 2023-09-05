@@ -1,7 +1,7 @@
-import 'package:flip_flutter/game/engine/actions/flip.dart';
-import 'package:flip_flutter/game/engine/actions/play.dart';
-import 'package:flip_flutter/game/engine/actions/recover.dart';
-import 'package:flip_flutter/game/engine/model/die.dart';
+import 'package:flip/game/engine/actions/flip.dart';
+import 'package:flip/game/engine/actions/play.dart';
+import 'package:flip/game/engine/actions/recover.dart';
+import 'package:flip/game/engine/model/die.dart';
 import 'package:fpdart/fpdart.dart';
 
 import 'model/game_state.dart';

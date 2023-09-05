@@ -1,4 +1,4 @@
-import 'package:flip_flutter/game/engine/model/die.dart';
+import 'package:flip/game/engine/model/die.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../model/game_state.dart';

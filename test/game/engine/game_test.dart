@@ -1,7 +1,7 @@
-import 'package:flip_flutter/game/engine/actions/create.dart';
-import 'package:flip_flutter/game/engine/game.dart';
-import 'package:flip_flutter/game/engine/model/game_state.dart';
-import 'package:flip_flutter/game/engine/model/player.dart';
+import 'package:flip/game/engine/actions/create.dart';
+import 'package:flip/game/engine/game.dart';
+import 'package:flip/game/engine/model/game_state.dart';
+import 'package:flip/game/engine/model/player.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 

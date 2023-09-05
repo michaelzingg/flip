@@ -1,4 +1,4 @@
-import 'package:flip_flutter/game/engine/actions/create.dart';
+import 'package:flip/game/engine/actions/create.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,8 +1,8 @@
-import 'package:flip_flutter/game/engine/game.dart';
-import 'package:flip_flutter/game/engine/model/die.dart';
-import 'package:flip_flutter/game/engine/model/game_state.dart';
-import 'package:flip_flutter/game/engine/model/player.dart';
-import 'package:flip_flutter/widgets/dice_widget.dart';
+import 'package:flip/game/engine/game.dart';
+import 'package:flip/game/engine/model/die.dart';
+import 'package:flip/game/engine/model/game_state.dart';
+import 'package:flip/game/engine/model/player.dart';
+import 'package:flip/widgets/dice_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fpdart/fpdart.dart';

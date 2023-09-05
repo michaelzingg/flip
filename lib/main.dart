@@ -1,5 +1,5 @@
-import 'package:flip_flutter/game/engine/actions/create.dart';
-import 'package:flip_flutter/widgets/game_widget.dart';
+import 'package:flip/game/engine/actions/create.dart';
+import 'package:flip/widgets/game_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
