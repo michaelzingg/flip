@@ -45,7 +45,7 @@ class GameWidget extends HookWidget {
 
     final sendGameEvent = (int dieId) =>
         run(GameEvent(stateNotifier.value.turn, dieId), stateNotifier.value)
-            .fold((l) => print(l), (r) => stateNotifier.value = r);
+            .fold((l) {}, (r) => stateNotifier.value = r);
 
     return Scaffold(
       body: Center(
