@@ -23,8 +23,6 @@ jobs:
           channel: 'stable'
       - name: Check Code Format
         run: dart format . --set-exit-if-changed
-      - name: Generate code
-        run: dart run build_runner build
       - name: Analyze code
         run: dart analyze .
   widget-tests:
@@ -36,10 +34,6 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.11'
           channel: 'stable'
-          architecture: x64
-      - name: Generate code
-        run: dart run build_runner build
       - name: Run tests
         run: flutter test
