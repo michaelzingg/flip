@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fpdart/fpdart.dart';
 
-class GameWidget extends HookWidget {
+import 'dice_area_widget.dart';
+
+class GameScreen extends HookWidget {
   final GameState state;
 
-  const GameWidget({super.key, required this.state});
+  const GameScreen({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -43,59 +45,39 @@ class GameWidget extends HookWidget {
                       ),
                     )))));
 
-    final sendGameEvent = (int dieId) =>
+    final GameState Function(int dieId) sendGameEvent = (int dieId) =>
         run(GameEvent(stateNotifier.value.turn, dieId), stateNotifier.value)
-            .fold((l) {}, (r) => stateNotifier.value = r);
+            .fold((l) => stateNotifier.value, (r) => stateNotifier.value = r);
+
+    final mapToDiceWidget = (
+            {required GameState Function(int) onClickHandler}) =>
+        (Die die) => DiceWidget(die: die, onClickHandler: onClickHandler);
+
+    final List<DiceWidget> Function(Iterable<Die> dice, Player player)
+        getDiceWidgetsFor = (Iterable<Die> dice, Player player) => dice
+            .whereType<PlayerDie>()
+            .where((element) => element.player == player)
+            .map(mapToDiceWidget(onClickHandler: sendGameEvent))
+            .toList();
 
     return Scaffold(
       body: Center(
         child: Column(
           children: [
             Text('Player ${stateNotifier.value.turn.name} s turn'),
-            const Text('Player 1'),
-            Wrap(
-              spacing: 8.0,
-              runSpacing: 12.0,
-              alignment: WrapAlignment.center,
-              children: stateNotifier.value.dice
-                  .whereType<PlayerDie>()
-                  .where((element) => element.player == Player.one)
-                  .map((e) => DiceWidget(
-                        die: e,
-                        onClickHandler: sendGameEvent,
-                      ))
+            DiceAreaWidget(
+                playerName: 'Player 1',
+                dice: getDiceWidgetsFor(stateNotifier.value.dice, Player.one)),
+            DiceAreaWidget(
+              playerName: 'Played Dice',
+              dice: stateNotifier.value.dice
+                  .whereType<PlayedDie>()
+                  .map(mapToDiceWidget(onClickHandler: sendGameEvent))
                   .toList(),
             ),
-            const Text('Played Dice'),
-            SizedBox(
-              height: 50,
-              child: Wrap(
-                spacing: 8.0,
-                runSpacing: 12.0,
-                alignment: WrapAlignment.center,
-                children: stateNotifier.value.dice
-                    .whereType<PlayedDie>()
-                    .map((e) => DiceWidget(
-                          die: e,
-                          onClickHandler: sendGameEvent,
-                        ))
-                    .toList(),
-              ),
-            ),
-            const Text('Player 2'),
-            Wrap(
-              spacing: 8.0,
-              runSpacing: 12.0,
-              alignment: WrapAlignment.center,
-              children: stateNotifier.value.dice
-                  .whereType<PlayerDie>()
-                  .where((element) => element.player == Player.two)
-                  .map((e) => DiceWidget(
-                        die: e,
-                        onClickHandler: sendGameEvent,
-                      ))
-                  .toList(),
-            ),
+            DiceAreaWidget(
+                playerName: 'Player 2',
+                dice: getDiceWidgetsFor(stateNotifier.value.dice, Player.two)),
             Text(stateNotifier.value.winner
                 .toOption()
                 .map((t) => 'Player ${t.name} wins!')

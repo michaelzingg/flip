@@ -1,5 +1,5 @@
 import 'package:flip/game/engine/actions/create.dart';
-import 'package:flip/widgets/game_widget.dart';
+import 'package:flip/widgets/game_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
                   context,
                   MaterialPageRoute<void>(
                       builder: (BuildContext context) =>
-                          GameWidget(state: create(seed: 77)))))),
+                          GameScreen(state: create(seed: 77)))))),
     );
   }
 }
