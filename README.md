@@ -1,3 +1,5 @@
+![Flutter Test](https://github.com/michaelzingg/flip/actions/workflows/flutter_test.yml/badge.svg)
+
 # FL!P
 
 A die game for 2 Players.
