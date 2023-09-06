@@ -12,20 +12,26 @@ class DiceAreaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 50,
-        child: Wrap(
-          spacing: 8.0,
-          runSpacing: 12.0,
-          alignment: WrapAlignment.center,
-          children: [
-            Text(playerName),
-            Wrap(
-                spacing: 8.0,
-                runSpacing: 12.0,
-                alignment: WrapAlignment.center,
-                children: dice.toList()),
-          ],
-        ));
+    return Container(
+      height: 200,
+      margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Colors.teal[200], borderRadius: BorderRadius.circular(20)),
+      child: Column(
+        children: [
+          Text(playerName),
+          Expanded(
+            child: Center(
+              child: Wrap(
+                  spacing: 8.0,
+                  runSpacing: 12.0,
+                  alignment: WrapAlignment.center,
+                  children: dice.toList()),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
