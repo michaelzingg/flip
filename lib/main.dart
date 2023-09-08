@@ -29,11 +29,9 @@ class MyApp extends StatelessWidget {
     final x = Theme.of(context);
     return Scaffold(
       body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
           child: Column(children: [
         Container(
-          margin: const EdgeInsets.all(100),
+          margin: const EdgeInsets.only(top: 120),
           child: Column(
             children: [
               Text('FL!P',
@@ -48,24 +46,34 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
+        const Spacer(),
         ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(minimumSize: const Size(200, 50)),
-            label: const Text('2 Players'),
             icon: const Icon(Icons.group),
+            label: const Text('2 Players'),
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(200, 50),
+            ),
             onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(
                     builder: (BuildContext context) =>
                         GameScreen(state: create(seed: 77))))),
+        const Spacer(),
         Container(
-          margin: const EdgeInsets.all(100),
+          margin: const EdgeInsets.all(50),
           child: TextButton.icon(
+            icon: const Icon(Icons.book),
             label: Text(
               'Rules',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
+            ),
+            style: TextButton.styleFrom(
+              fixedSize: const Size(200, 50),
             ),
             onPressed: () {},
-            icon: const Icon(Icons.book),
           ),
         )
       ])),
