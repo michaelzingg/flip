@@ -1,4 +1,5 @@
 import 'package:flip/game/engine/actions/create.dart';
+import 'package:flip/widgets/game_rules_screen.dart';
 import 'package:flip/widgets/game_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +73,11 @@ class MyApp extends StatelessWidget {
             style: TextButton.styleFrom(
               fixedSize: const Size(200, 50),
             ),
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const GameRules(),
+                )),
           ),
         )
       ])),
