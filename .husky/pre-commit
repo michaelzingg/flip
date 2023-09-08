@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+dart fix --apply
+dart format . --set-exit-if-changed
+flutter analyze
+flutter test
