@@ -26,27 +26,49 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final x = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text("FL!P"),
-      ),
       body: Center(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: const Size(200, 50)),
-              child: const Text('2 Players'),
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                      builder: (BuildContext context) =>
-                          GameScreen(state: create(seed: 77)))))),
+          child: Column(children: [
+        Container(
+          margin: const EdgeInsets.all(100),
+          child: Column(
+            children: [
+              Text('FL!P',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 70)),
+              Text('A dice game for two',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Theme.of(context).colorScheme.primary)),
+            ],
+          ),
+        ),
+        ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(minimumSize: const Size(200, 50)),
+            label: const Text('2 Players'),
+            icon: const Icon(Icons.group),
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                    builder: (BuildContext context) =>
+                        GameScreen(state: create(seed: 77))))),
+        Container(
+          margin: const EdgeInsets.all(100),
+          child: TextButton.icon(
+            label: Text(
+              'Rules',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            onPressed: () {},
+            icon: const Icon(Icons.book),
+          ),
+        )
+      ])),
     );
   }
 }
