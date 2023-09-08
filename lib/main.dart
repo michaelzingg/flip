@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final x = Theme.of(context);
     return Scaffold(
       body: Center(
           child: Column(children: [
