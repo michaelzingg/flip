@@ -5,7 +5,6 @@ import 'package:flip/game/engine/model/player.dart';
 import 'package:flip/widgets/dice_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart';
 
 import 'dice_area_widget.dart';
 
@@ -61,28 +60,35 @@ class GameScreen extends HookWidget {
             .toList();
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Text('Player ${stateNotifier.value.turn.name} s turn'),
-            DiceAreaWidget(
-                playerName: 'Player 1',
-                dice: getDiceWidgetsFor(stateNotifier.value.dice, Player.one)),
-            DiceAreaWidget(
-              playerName: 'Played Dice',
-              dice: stateNotifier.value.dice
-                  .whereType<PlayedDie>()
-                  .map(mapToDiceWidget(onClickHandler: sendGameEvent))
-                  .toList(),
-            ),
-            DiceAreaWidget(
-                playerName: 'Player 2',
-                dice: getDiceWidgetsFor(stateNotifier.value.dice, Player.two)),
-            Text(stateNotifier.value.winner
-                .toOption()
-                .map((t) => 'Player ${t.name} wins!')
-                .getOrElse(() => 'Keep playing...'))
-          ],
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Text(
+                'Player ${stateNotifier.value.turn.name} s turn',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
+              DiceAreaWidget(
+                  playerName: 'Player 1',
+                  dice:
+                      getDiceWidgetsFor(stateNotifier.value.dice, Player.one)),
+              DiceAreaWidget(
+                playerName: 'Played Dice',
+                dice: stateNotifier.value.dice
+                    .whereType<PlayedDie>()
+                    .map(mapToDiceWidget(onClickHandler: sendGameEvent))
+                    .toList(),
+              ),
+              DiceAreaWidget(
+                  playerName: 'Player 2',
+                  dice:
+                      getDiceWidgetsFor(stateNotifier.value.dice, Player.two)),
+            ],
+          ),
         ),
       ),
     );

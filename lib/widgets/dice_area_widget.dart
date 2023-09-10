@@ -12,11 +12,12 @@ class DiceAreaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 160,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Colors.teal[200], borderRadius: BorderRadius.circular(20)),
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: BorderRadius.circular(20)),
       child: Column(
         children: [
           Text(playerName),

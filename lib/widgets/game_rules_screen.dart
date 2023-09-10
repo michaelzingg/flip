@@ -7,18 +7,20 @@ class GameRules extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-          future:
-              DefaultAssetBundle.of(context).loadString('assets/text/rules.md'),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (snapshot.hasData) {
-              return Markdown(data: snapshot.data!);
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+      body: SafeArea(
+        child: FutureBuilder(
+            future: DefaultAssetBundle.of(context)
+                .loadString('assets/text/rules.md'),
+            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              if (snapshot.hasData) {
+                return Markdown(data: snapshot.data!);
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+      ),
     );
   }
 }
