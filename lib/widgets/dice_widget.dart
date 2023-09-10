@@ -1,5 +1,5 @@
+import 'package:dice_icons/dice_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../game/engine/model/die.dart';
 
@@ -13,17 +13,23 @@ class DiceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: GestureDetector(
-        onTap: () => onClickHandler(die.dieId),
-        child: Opacity(
-          opacity: die is FlippedDie ? 0.5 : 1,
-          child: Image(
-              fit: BoxFit.fill,
-              image: AssetImage('assets/images/Dice-${die.value}.png')),
-        ),
-      ),
-    );
+    return IconButton(
+        iconSize: 40,
+        color: Theme.of(context)
+            .colorScheme
+            .primary
+            .withOpacity(die is FlippedDie ? 0.6 : 1),
+        onPressed: () => onClickHandler(die.dieId),
+        icon: Icon(diceIconFromInt(die.value)));
   }
 }
+
+final diceIconFromInt = (int value) => switch (value) {
+      1 => DiceIcons.dice1,
+      2 => DiceIcons.dice2,
+      3 => DiceIcons.dice3,
+      4 => DiceIcons.dice4,
+      5 => DiceIcons.dice5,
+      6 => DiceIcons.dice6,
+      _ => DiceIcons.dice0
+    };
