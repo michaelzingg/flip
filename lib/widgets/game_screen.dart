@@ -20,23 +20,28 @@ class GameScreen extends HookWidget {
     useValueChanged(
         stateNotifier.value.winner,
         (oldValue, oldResult) => Future.delayed(
-            const Duration(milliseconds: 700),
+            const Duration(milliseconds: 400),
             () => showDialog<void>(
                 context: context,
                 barrierDismissible: false,
-                builder: (context2) => Dialog(
+                builder: (context) => Dialog(
                         child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('${stateNotifier.value.winner} wins!'),
+                          Icon(
+                            Icons.emoji_events,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          const SizedBox(height: 15),
+                          Text('${stateNotifier.value.winner?.name} wins!'),
                           const SizedBox(height: 15),
                           TextButton(
                             onPressed: () {
                               Navigator.popUntil(
-                                  context2, (route) => route.isFirst);
+                                  context, (route) => route.isFirst);
                             },
                             child: const Text('Ok'),
                           ),
