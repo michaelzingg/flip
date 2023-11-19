@@ -1,16 +1,20 @@
+import 'dart:math';
+
 import 'package:flip_game_engine/src/utils/random.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('should return same randomInt with same seed', () {
-    expect(randomInt().evaluate(77), equals(randomInt().evaluate(77)));
+    expect(randomInt().evaluate(Random(77)),
+        equals(randomInt().evaluate(Random(77))));
   });
 
   test('should return random number in given range', () {
     const min = 0;
     const max = 1;
     expect(
-        randomIntInRange(startInclusive: min, endExclusive: max).evaluate(77),
+        randomIntInRange(startInclusive: min, endExclusive: max)
+            .evaluate(Random(77)),
         allOf(greaterThanOrEqualTo(min), lessThan(max)));
   });
 
@@ -21,7 +25,7 @@ void main() {
     expect(
         randomIntListInRange(
                 numberOfElements: n, startInclusive: min, endExclusive: max)
-            .evaluate(77),
+            .evaluate(Random(77)),
         everyElement(allOf(greaterThanOrEqualTo(min), lessThan(max))));
   });
 }

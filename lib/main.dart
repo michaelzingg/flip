@@ -57,8 +57,9 @@ class MyApp extends StatelessWidget {
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                      builder: (BuildContext context) =>
-                          GameScreen(state: create(seed: 77))))),
+                      builder: (BuildContext context) => GameScreen(
+                          state: create(
+                              seed: DateTime.now().microsecondsSinceEpoch))))),
           const Spacer(),
           Container(
             margin: const EdgeInsets.all(50),
