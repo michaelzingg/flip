@@ -1,0 +1,23 @@
+name: flip_game_engine
+description: A starting point for Dart libraries or applications.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.1.0
+
+# Add regular dependencies here.
+dependencies:
+  # path: ^1.8.0
+  fpdart: ^0.6.0
+  equatable: ^2.0.0
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
+  lint_staged: ^0.4.2
+
+lint_staged:
+  "lib/**.dart": dart format && dart fix --apply && dart analyze

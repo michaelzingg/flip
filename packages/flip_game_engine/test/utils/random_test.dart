@@ -1,5 +1,5 @@
-import 'package:flip/game/engine/utils/random.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flip_game_engine/src/utils/random.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('should return same randomInt with same seed', () {

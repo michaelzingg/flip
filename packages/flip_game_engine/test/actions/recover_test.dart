@@ -1,9 +1,9 @@
-import 'package:flip/game/engine/actions/recover.dart';
-import 'package:flip/game/engine/model/die.dart';
-import 'package:flip/game/engine/model/game_state.dart';
-import 'package:flip/game/engine/model/player.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flip_game_engine/src/actions/recover.dart';
+import 'package:flip_game_engine/src/model/die.dart';
+import 'package:flip_game_engine/src/model/game_state.dart';
+import 'package:flip_game_engine/src/model/player.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('recover', () {

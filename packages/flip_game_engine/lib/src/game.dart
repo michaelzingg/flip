@@ -1,9 +1,9 @@
-import 'package:flip/game/engine/actions/flip.dart';
-import 'package:flip/game/engine/actions/play.dart';
-import 'package:flip/game/engine/actions/recover.dart';
-import 'package:flip/game/engine/model/die.dart';
 import 'package:fpdart/fpdart.dart';
 
+import 'actions/flip.dart';
+import 'actions/play.dart';
+import 'actions/recover.dart';
+import 'model/die.dart';
 import 'model/game_state.dart';
 import 'model/player.dart';
 

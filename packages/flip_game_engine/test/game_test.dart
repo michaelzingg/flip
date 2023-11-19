@@ -1,9 +1,6 @@
-import 'package:flip/game/engine/actions/create.dart';
-import 'package:flip/game/engine/game.dart';
-import 'package:flip/game/engine/model/game_state.dart';
-import 'package:flip/game/engine/model/player.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flip_game_engine/flip_game_engine.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:test/test.dart';
 
 void main() {
   final testState = create(seed: 77);

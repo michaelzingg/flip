@@ -1,10 +1,10 @@
-import 'package:flip/game/engine/actions/create.dart';
-import 'package:flip/game/engine/actions/flip.dart';
-import 'package:flip/game/engine/model/die.dart';
-import 'package:flip/game/engine/model/game_state.dart';
-import 'package:flip/game/engine/model/player.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flip_game_engine/src/actions/create.dart';
+import 'package:flip_game_engine/src/actions/flip.dart';
+import 'package:flip_game_engine/src/model/die.dart';
+import 'package:flip_game_engine/src/model/game_state.dart';
+import 'package:flip_game_engine/src/model/player.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:test/test.dart';
 
 void main() {
   final testDice = create(seed: 77).dice;

@@ -1,6 +1,6 @@
-import 'package:flip/game/engine/actions/create.dart';
 import 'package:flip/widgets/game_rules_screen.dart';
 import 'package:flip/widgets/game_screen.dart';
+import 'package:flip_game_engine/flip_game_engine.dart';
 import 'package:flutter/material.dart';
 
 void main() {

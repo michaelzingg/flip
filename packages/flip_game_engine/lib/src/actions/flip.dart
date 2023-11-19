@@ -1,6 +1,6 @@
-import 'package:flip/game/engine/model/die.dart';
 import 'package:fpdart/fpdart.dart';
 
+import '../model/die.dart';
 import '../model/game_state.dart';
 
 typedef FlipAction = Either<String, GameState> Function(
