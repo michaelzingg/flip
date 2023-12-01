@@ -10,24 +10,23 @@ import 'model/player.dart';
 const dummyState = GameState(dice: [], turn: Player.one, recoverableEyes: 0);
 
 Either<String, GameState> run(GameEvent event, GameState state) =>
-    _processEvent(event).run(state).first;
+    _processEvent(event).run(state).$1;
 
 State<GameState, Either<String, GameState>> _processEvent(GameEvent event) =>
     State<GameState, Either<String, GameState>>((GameState state) {
       // TODO: Try to write in a more functional way
       if (event.player != state.turn) {
-        return Tuple2(Either.left('${state.turn.name}\'s turn'), state);
+        return (Either.left('${state.turn.name}\'s turn'), state);
       }
-      if (state.winner.toOption().isSome()) {
-        return Tuple2(
-            Either.left('Game ended. No more moves possible!'), state);
+      if (optionOf(state.winner).isSome()) {
+        return (Either.left('Game ended. No more moves possible!'), state);
       }
       final newState = state.dice
           .where((t) => t.dieId == event.dieId)
           .firstOption
           .toEither(() => "die id not found")
           .flatMap((dieId) => _process(state, dieId));
-      return Tuple2(newState, newState.getOrElse((l) => state));
+      return (newState, newState.getOrElse((l) => state));
     });
 
 Either<String, GameState> _process(GameState state, Die die) => switch (die) {

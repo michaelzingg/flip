@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 
 State<Random, int> randomInt() {
   return State((Random rnd) {
-    return Tuple2(rnd.nextInt(1 << 32), rnd);
+    return (rnd.nextInt(1 << 32), rnd);
   });
 }
 
@@ -30,10 +30,10 @@ State<Random, List<int>> randomIntListInRange(
 extension StateListSequence<S, A> on List<State<S, A>> {
   State<S, List<A>> sequence() {
     return foldRight(
-        State((state) => Tuple2([], state)),
+        State((state) => ([], state)),
         (element, accumulator) =>
-            element.map2(accumulator, (a, c) => [a, ...c]));
+            element.map2(accumulator, (a, c) => [...a, c]));
   }
 }
 
-State<S, A> unit<S, A>(A a) => State((state) => Tuple2(a, state));
+State<S, A> unit<S, A>(A a) => State((state) => (a, state));
