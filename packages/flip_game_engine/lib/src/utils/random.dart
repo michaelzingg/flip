@@ -20,18 +20,20 @@ State<Random, List<int>> randomIntListInRange(
     {required int numberOfElements,
     required int startInclusive,
     required int endExclusive}) {
-  return sequence(List.generate(
+  return List.generate(
       numberOfElements,
-      (index) => randomIntInRange(
-          startInclusive: startInclusive, endExclusive: endExclusive)));
+      (_) => randomIntInRange(
+          startInclusive: startInclusive,
+          endExclusive: endExclusive)).sequence();
 }
 
-// TODO: Convert to extension method (see if it supports strict typing to State or Applicative)
-State<Random, List<int>> sequence(List<State<Random, int>> fs) {
-  return fs.foldRight(unit([]),
-      (element, accumulator) => element.map2(accumulator, (a, c) => [a, ...c]));
+extension StateListSequence<S, A> on List<State<S, A>> {
+  State<S, List<A>> sequence() {
+    return foldRight(
+        State((state) => Tuple2([], state)),
+        (element, accumulator) =>
+            element.map2(accumulator, (a, c) => [a, ...c]));
+  }
 }
 
-// TODO: Maybe we could create an extension method for a factory constructor like State.pure(x)
-State<Random, List<int>> unit(List<int> a) =>
-    State((state) => Tuple2(a, state));
+State<S, A> unit<S, A>(A a) => State((state) => Tuple2(a, state));
