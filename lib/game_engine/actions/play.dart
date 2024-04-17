@@ -3,11 +3,8 @@ import 'package:fpdart/fpdart.dart';
 import '../model/die.dart';
 import '../model/game_state.dart';
 
-typedef PlayAction = Either<String, GameState> Function(
-    int dieId, GameState state);
-
-final PlayAction play = (int dieId, GameState state) {
-  var isOponentDie = (PlayerDie die) => die.player != state.turn;
+Either<String, GameState> play(int dieId, GameState state) {
+  isOponentDie(PlayerDie die) => die.player != state.turn;
 
   return state.dice
       .where((die) => die.dieId == dieId)
@@ -21,22 +18,23 @@ final PlayAction play = (int dieId, GameState state) {
       .map(_resetFlippedDice)
       .map(_setRecoverableEyes(dieId))
       .map(changeTurns);
-};
+}
 
-final _isPlayerDie = (Die die) => die is PlayerDie;
+bool _isPlayerDie(Die die) => die is PlayerDie;
 
-final _toPlayerDie = (Die die) => die as PlayerDie;
+PlayerDie _toPlayerDie(Die die) => die as PlayerDie;
 
-final _setRecoverableEyes = (int dieId) => (GameState state) => GameState(
-    dice: state.dice,
-    turn: state.turn,
-    recoverableEyes: state.dice
-        .where((die) => die.dieId == dieId)
-        .firstOption
-        .map((t) => t.value - 1)
-        .getOrElse(() => 0));
+GameState Function(GameState state) _setRecoverableEyes(int dieId) =>
+    (GameState state) => GameState(
+        dice: state.dice,
+        turn: state.turn,
+        recoverableEyes: state.dice
+            .where((die) => die.dieId == dieId)
+            .firstOption
+            .map((t) => t.value - 1)
+            .getOrElse(() => 0));
 
-final _resetFlippedDice = (GameState state) => GameState(
+GameState _resetFlippedDice(GameState state) => GameState(
     dice: state.dice
         .map((e) => e is FlippedDie && e.player == state.turn ? e.unflip() : e),
     turn: state.turn,

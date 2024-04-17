@@ -49,20 +49,18 @@ class GameScreen extends HookWidget {
                       ),
                     )))));
 
-    final GameState Function(int dieId) sendGameEvent = (int dieId) =>
+    sendGameEvent(int dieId) =>
         run(GameEvent(stateNotifier.value.turn, dieId), stateNotifier.value)
             .fold((l) => stateNotifier.value, (r) => stateNotifier.value = r);
 
-    final mapToDiceWidget = (
-            {required GameState Function(int) onClickHandler}) =>
+    mapToDiceWidget({required GameState Function(int) onClickHandler}) =>
         (Die die) => DiceWidget(die: die, onClickHandler: onClickHandler);
 
-    final List<DiceWidget> Function(Iterable<Die> dice, Player player)
-        getDiceWidgetsFor = (Iterable<Die> dice, Player player) => dice
-            .whereType<PlayerDie>()
-            .where((element) => element.player == player)
-            .map(mapToDiceWidget(onClickHandler: sendGameEvent))
-            .toList();
+    getDiceWidgetsFor(Iterable<Die> dice, Player player) => dice
+        .whereType<PlayerDie>()
+        .where((element) => element.player == player)
+        .map(mapToDiceWidget(onClickHandler: sendGameEvent))
+        .toList();
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,

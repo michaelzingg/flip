@@ -3,10 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import '../model/die.dart';
 import '../model/game_state.dart';
 
-typedef FlipAction = Either<String, GameState> Function(
-    int dieId, GameState state);
-
-final FlipAction flip = (int dieId, GameState state) {
+Either<String, GameState> flip(int dieId, GameState state) {
   return state.dice
       .where((element) => element.dieId == dieId)
       .firstOption
@@ -17,4 +14,4 @@ final FlipAction flip = (int dieId, GameState state) {
       .map(state.replaceDie)
       .map(resetRecoverableEyes)
       .map(changeTurns);
-};
+}

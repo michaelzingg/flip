@@ -20,11 +20,11 @@ class DiceWidget extends StatelessWidget {
             .primary
             .withOpacity(die is FlippedDie ? 0.6 : 1),
         onPressed: () => onClickHandler(die.dieId),
-        icon: Icon(diceIconFromInt(die.value)));
+        icon: Icon(_diceIconFromInt(die.value)));
   }
 }
 
-final diceIconFromInt = (int value) => switch (value) {
+IconData _diceIconFromInt(int value) => switch (value) {
       1 => DiceIcons.dice1,
       2 => DiceIcons.dice2,
       3 => DiceIcons.dice3,
