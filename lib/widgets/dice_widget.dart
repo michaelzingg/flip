@@ -1,6 +1,7 @@
 import 'package:dice_icons/dice_icons.dart';
-import 'package:flip_game_engine/flip_game_engine.dart';
 import 'package:flutter/material.dart';
+
+import '../game_engine/model/die.dart';
 
 class DiceWidget extends StatelessWidget {
   final Die die;

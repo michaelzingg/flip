@@ -2,5 +2,3 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 dart run lint_staged
-( cd packages/flip_game_engine && dart test test )
-flutter test test

@@ -39,8 +39,6 @@ dependencies:
   flutter_hooks: ^0.20.0
   flutter_markdown: ^0.6.17
   dice_icons: ^0.1.5
-  flip_game_engine:
-    path: ./packages/flip_game_engine
 
 dev_dependencies:
   flutter_test:
@@ -100,4 +98,3 @@ flutter:
 
 lint_staged:
   "lib/**.dart": dart format && dart fix --apply && flutter analyze
-  # "packages/flip_game_engine/lib/**.dart": dart format && dart fix --apply && dart analyze

@@ -1,8 +1,11 @@
 import 'package:flip/widgets/dice_widget.dart';
-import 'package:flip_game_engine/flip_game_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../game_engine/game.dart';
+import '../game_engine/model/die.dart';
+import '../game_engine/model/game_state.dart';
+import '../game_engine/model/player.dart';
 import 'dice_area_widget.dart';
 
 class GameScreen extends HookWidget {

@@ -105,13 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  flip_game_engine:
-    dependency: "direct main"
-    description:
-      path: "packages/flip_game_engine"
-      relative: true
-    source: path
-    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -312,5 +305,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.1.0 <4.0.0"
+  dart: ">=3.1.0-185.0.dev <4.0.0"
   flutter: ">=3.10.0"
